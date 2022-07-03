@@ -39,7 +39,7 @@ mongoose.connect( process.env.db,{useNewUrlParser: true,useUnifiedTopology: true
 
 require("./passport/passport")()
     app.use(session({
-        secret:process.env.name,
+        secret:'smvec',
         resave:false,
         saveUninitialized:true,
         store: MongoStore.create({
