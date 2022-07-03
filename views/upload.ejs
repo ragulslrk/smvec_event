@@ -14,23 +14,29 @@
   <body>
     <main class="main" id="top">
       <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color:#1256ea;">
-        <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/custom/LOGO.png" width="100px" alt="logo" /></a>
+        <div class="container"><a class="navbar-brand" href="/"><img src="assets/img/custom/LOGO.png" width="100px" alt="logo" /></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">HOME</a></li>
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="/">HOME</a></li>
               <li class="nav-item"><a class="nav-link" aria-current="page" href="https://feedback.drcstudio.co.in/">FEEDBACK</a></li>
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="/logout">LOGOUT</a></li>
             </ul>
           </div>
         </div>
       </nav>
       <br>
       <br> 
-      <form method="post" action="/upload">
-        <input type="text" value="Click here and press tab to test keyboard interaction.">
+      <form method="post" action="/uploads" enctype="multipart/form-data">
+        <%if(message.length>0){%>
+          <div class="alert alert-success" role="alert">
+              <%=message%>
+            </div>
+            <%}%>
+        
         <label class="file">
             Drop a file or click to select one
-            <input type="file" multiple>
+            <input type="file" multiple name="file">
             <!-- use multiple, even if it’s not allowed, to be able to show an info text -->
         </label>
         <button type="submit">Upload</button>

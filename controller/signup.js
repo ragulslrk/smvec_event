@@ -3,7 +3,7 @@ const user=require('../model/user')
 const bcrypt=require('bcrypt')
 
 route.get('/signup',(req,res)=>{
-    res.render('signup')
+    res.render('signup',{message: req.flash('error')})
 })
 
 route.post('/signup',(req,res)=>{
@@ -13,7 +13,8 @@ route.post('/signup',(req,res)=>{
         if(result)
         {   
            
-             res.status(400).send('already exists')
+            req.flash('error', 'Username Already Exist')
+            res.redirect('/signup')
         }
         else
         {
@@ -29,7 +30,7 @@ route.post('/signup',(req,res)=>{
            email:req.body.email
        })
         user_new.save()
-        console.log("inserted sucessfully")
+        req.flash('info', 'Account Created Successfully,Please Login')
         res.redirect('/login')
     })
         }

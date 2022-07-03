@@ -16,25 +16,28 @@ module.exports=()=>{
     })
     //passport stratergy
     passport.use("local-login",new localstrategy((username,password,done)=>
-    {  
-        console.log(username);
-        employ_user.findOne({"email":username},(err,employ)=>{
+    {   
+        
+        
+        employ_user.findOne({"username":username},(err,employ)=>{
     
-             if(err){return done(err)}
-             if(!employ){ 
-                 return done(null,false,{message:"Incorrect EmailId "})}
+            if(err){return done(err)}
+            if(!employ){ 
+                console.log('this is in  passport file')
+                return done(null,false,{message:"Incorrect Username "})}
                 
-            if(employ.password==password){
-                return done(null,employ)
-            }
-            else{
-                return done(null,false,{message:"Incorrect Password"})
-            }
-            // bcrypt.compare(password,students.password,(err,res)=>{
-            //     if(err){return done(err)}
-            //     if(res==false){return  done(null,false,{message:"incorrect password"})}
-            // return done(null,students)
-            // })
-         })
+            // if(employ.password==password){
+            //     return done(null,employ)
+            // }
+            // else{
+            //     console.log(password);
+            //     return done(null,false,{message:"Incorrect Password"})
+            // }
+            bcrypt.compare(password,employ.password,(err,res)=>{
+                if(err){return done(err)}
+                if(res==false){return  done(null,false,{message:"Incorrect Password"})}
+            return done(null,employ)
+            })
+        })
     }))
-} 
+}
