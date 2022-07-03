@@ -1,4 +1,4 @@
-const bcrypt=require("bcrypt")
+const bcrypt=require("../server").bcrypt
 const passport=require("passport")
 const localstrategy=require("passport-local").Strategy
 const employ_user= require("../model/user")

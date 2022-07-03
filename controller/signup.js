@@ -1,6 +1,6 @@
 const route=require('express').Router()
 const user=require('../model/user')
-const bcrypt=require('bcrypt')
+const bcrypt=require('../server').bcrypt
 
 route.get('/signup',(req,res)=>{
     res.render('signup',{message: req.flash('error')})
